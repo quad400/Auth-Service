@@ -14,27 +14,21 @@ This is a simple authentication microservice using Node.js, Express, and MongoDB
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/auth-service.git
-   cd auth-service
+   git clone https://github.com/quad400/Auth-Service.git
+   cd Auth-Service
    ```
 
-2. Create a `.env` file in the root of the project and add the following:
-
-   ```env
-   MONGO_URL=mongodb://localhost:27017/authservice
-   JWT_SECRET=your_jwt_secret
-   PORT=3000
-   ```
+2. Create an `.env` and update it accordingly from `.env.sample` file in the root of the project and add the following:
 
 3. Build and run the Docker containers:
 
    ```sh
    docker compose up --build -d
    ```
-
+   
 ## Usage
 
-The authentication service will be available at `http://localhost:3000`.
+The authentication service will be available at `http://localhost:5000`.
 
 ## API Endpoints
 

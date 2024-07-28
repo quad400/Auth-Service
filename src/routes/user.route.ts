@@ -32,6 +32,7 @@ userRoutes.post(
   exceptionEscalator(userController.login)
 );
 
+
 userRoutes.post(
   "/activate/:activationId",
   exceptionEscalator(userController.activate)
@@ -51,5 +52,6 @@ userRoutes.post(
 );
 
 userRoutes.get("/me", protect, exceptionEscalator(userController.me));
+userRoutes.patch("/me", protect, exceptionEscalator(userController.update));
 
 userRoutes.get("/:userId", exceptionEscalator(userController.getById));

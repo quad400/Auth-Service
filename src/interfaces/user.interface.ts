@@ -7,6 +7,7 @@ export interface IUser extends Document {
   createdAt: Date;
   updatedAt: Date;
   avatar: string;
+  role: "admin" | "user";
   activationCode: string | undefined;
   activationCodeExpire: Date | undefined;
 

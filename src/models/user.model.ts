@@ -1,5 +1,6 @@
 import crypto from "crypto"
 import { Schema, model } from "mongoose";
+import { v4 as uuidV4 } from "uuid";
 import { IUser } from "../interfaces/user.interface";
 
 const userSchema = new Schema<IUser>(
@@ -21,6 +22,11 @@ const userSchema = new Schema<IUser>(
       type: String,
       default: null,
     },
+    role: {
+      type: String,
+      enum: ["admin", "user"],
+      default: "user",
+    },
     emailVerified: {
       type: Boolean,
       default: false,
@@ -34,7 +40,7 @@ const userSchema = new Schema<IUser>(
 
 
 userSchema.methods.generateActivation = function(){
-  const code = crypto.randomBytes(10).toString('hex')
+  const code = uuidV4()
   this.activationCode = code
 
   let expiryDate = new Date();

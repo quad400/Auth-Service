@@ -37,6 +37,10 @@ export class UserService {
       template: "register",
       context: { name: user.fullName, code: activationCode },
     });
+
+    return {
+      activationCode: user.activationCode,
+    };
   }
 
   async activate(activationId: string) {
@@ -116,10 +120,11 @@ export class UserService {
       );
     }
 
-    const user = await this.userDao.get({_id: userId});
-    
+    const user = await this.userDao.get({ _id: userId });
+
     user.password = await this.hashHelper.encrypt(password);
 
     await user.save();
   }
+
 }

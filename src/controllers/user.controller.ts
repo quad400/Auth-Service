@@ -24,11 +24,12 @@ export class UserController {
 
   register = async (req: Request, res: Response) => {
     const dto = req.body as ICreateUser;
-    await this.userService.register(dto);
+    const user = await this.userService.register(dto);
 
     ResponseHelper.successResponse({
       res,
       statusCode: HTTP_STATUS_CREATED,
+      data: user,
       message: "Validate you account with the link sent to this email",
     });
   };
@@ -45,6 +46,20 @@ export class UserController {
     ResponseHelper.successResponse({
       res,
       message: "Account Successfully Verified",
+      data: user,
+      statusCode: HTTP_STATUS_OK,
+    });
+  };
+
+  update = async (req: Request, res: Response) => {
+    const { _id } = req.user;
+    const body = req.body;
+
+    const user = await this.userDao.update(_id, body);
+
+    ResponseHelper.successResponse({
+      res,
+      message: "Account Successfully Updated",
       data: user,
       statusCode: HTTP_STATUS_OK,
     });
@@ -90,7 +105,7 @@ export class UserController {
 
     ResponseHelper.successResponse({
       res,
-      message: "Reset Password email sent successfully",
+      message: "Forgot Password email sent successfully",
       data: tokens,
       statusCode: HTTP_STATUS_OK,
     });
